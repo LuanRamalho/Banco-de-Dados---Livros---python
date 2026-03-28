@@ -1,0 +1,217 @@
+[
+  {
+    "author": "George R. R. Martin",
+    "title": "As Crônicas de Gelo e Fogo",
+    "year": 1996
+  },
+  {
+    "author": "Laura Ingalls Wilder",
+    "title": "O Pequeno Fazendeiro",
+    "year": 1933
+  },
+  {
+    "author": "Antoine de Saint-Exupéry",
+    "title": "O Pequeno Príncipe",
+    "year": 1943
+  },
+  {
+    "author": "Liev Tolstói",
+    "title": "Guerra e Paz",
+    "year": 1869
+  },
+  {
+    "author": "J. K. Rowling",
+    "title": "Harry Potter",
+    "year": 1997
+  },
+  {
+    "author": "William Shakespeare",
+    "title": "Romeu e Julieta",
+    "year": 1597
+  },
+  {
+    "author": "Lewis Carroll",
+    "title": "Alice no País das Maravilhas",
+    "year": 1865
+  },
+  {
+    "author": "José Mauro de Vasconcelos",
+    "title": "Meu Pé de Laranja Lima",
+    "year": 1968
+  },
+  {
+    "author": "Hans Christian Andersen",
+    "title": "O Patinho Feio",
+    "year": 1843
+  },
+  {
+    "author": "J. R. R. Tolkien",
+    "title": "O Hobbit",
+    "year": 1937
+  },
+  {
+    "author": "Roald Dahl",
+    "title": "A Fantástica Fábrica de Chocolate",
+    "year": 1964
+  },
+  {
+    "author": "Roald Dahl",
+    "title": "Matilda",
+    "year": 1988
+  },
+  {
+    "author": "Frank Herbert",
+    "title": "Duna",
+    "year": 1965
+  },
+  {
+    "author": "George R. R. Martin",
+    "title": "As Crônicas de Fogo e Sangue",
+    "year": 2018
+  },
+  {
+    "author": "C. S. Lewis",
+    "title": "As Crônicas de Nárnia",
+    "year": 1950
+  },
+  {
+    "author": "George Orwell",
+    "title": "1984",
+    "year": 1949
+  },
+  {
+    "author": "Miguel de Cervantes",
+    "title": "Dom Quixote de la Mancha",
+    "year": 1605
+  },
+  {
+    "author": "Jane Austen",
+    "title": "Orgulho e Preconceito",
+    "year": 1813
+  },
+  {
+    "author": "Victor Hugo",
+    "title": "Os Miseráveis",
+    "year": 1862
+  },
+  {
+    "author": "Machado de Assis",
+    "title": "Dom Casmurro",
+    "year": 1899
+  },
+  {
+    "author": "William P. Young",
+    "title": "A Cabana",
+    "year": 2007
+  },
+  {
+    "author": "Machado de Assis",
+    "title": "Memórias Póstumas de Brás Cubas",
+    "year": 1881
+  },
+  {
+    "author": "Ferenc Molnár",
+    "title": "Os Meninos da Rua Paulo",
+    "year": 1906
+  },
+  {
+    "author": "C. S. Lewis",
+    "title": "Cristianismo Puro e Simples",
+    "year": 1952
+  },
+  {
+    "author": "John Bellairs",
+    "title": "O Mistério do Relógio na Parede",
+    "year": 1973
+  },
+  {
+    "author": "Cristina Jimenez",
+    "title": "Os Donos do Mundo",
+    "year": 2012
+  },
+  {
+    "author": "A. J. Barros",
+    "title": "O Enigma de Compostela",
+    "year": 2013
+  },
+  {
+    "author": "Emily Brontë",
+    "title": "O Morro dos Ventos Uivantes",
+    "year": 1847
+  },
+  {
+    "author": "Margaret Mitchell",
+    "title": "E o Vento Levou",
+    "year": 1936
+  },
+  {
+    "author": "Ruth Rocha",
+    "title": "Marcelo, Martelo e Marmelo",
+    "year": 1976
+  },
+  {
+    "author": "Ziraldo",
+    "title": "O Menino Maluquinho",
+    "year": 1980
+  },
+  {
+    "author": "Eric Carle",
+    "title": "Uma Lagarta Muito Comilona",
+    "year": 1969
+  },
+  {
+    "author": "Monteiro Lobato",
+    "title": "Reinações de Narizinho",
+    "year": 1931
+  },
+  {
+    "author": "C. S. Lewis",
+    "title": "O Leão, a Feiticeira e o Guarda-Roupa",
+    "year": 1950
+  },
+  {
+    "author": "Pedro Bandeira",
+    "title": "Papo de Sapato",
+    "year": 2002
+  },
+  {
+    "author": "Vinicius de Moraes",
+    "title": "A Arca de Noé",
+    "year": 1970
+  },
+  {
+    "author": "J. M. Barrie",
+    "title": "Peter Pan e Wendy",
+    "year": 1911
+  },
+  {
+    "author": "Beatrix Potter",
+    "title": "A História de Pedro Coelho",
+    "year": 1902
+  },
+  {
+    "author": "Jacob Grimm, Wilhelm Grimm",
+    "title": "Contos de Grimm",
+    "year": 1812
+  },
+  {
+    "author": "Monteiro Lobato",
+    "title": "O Sítio do Picapau Amarelo",
+    "year": 1920
+  },
+  {
+    "author": "William Kamkwamba",
+    "title": "O Menino que Descobriu o Vento",
+    "year": 2009
+  },
+  {
+    "author": "Frances Hodgson Burnett",
+    "title": "O Jardim Secreto",
+    "year": 1911
+  },
+  {
+    "author": "Moacyr Scliar",
+    "title": "Mistério da Casa Verde",
+    "year": 1977
+  }
+]
