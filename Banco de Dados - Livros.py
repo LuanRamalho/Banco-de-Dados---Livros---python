@@ -8,6 +8,7 @@ DB_FILE = 'books.json'
 ITEMS_PER_PAGE = 20  
 CARD_MIN_WIDTH = 250 
 current_page = 0
+filtered_books = [] # Lista para armazenar o resultado da busca
 
 def load_data():
     if not os.path.exists(DB_FILE):
@@ -27,6 +28,20 @@ def save_data(data):
 
 # --- Funções de Lógica ---
 
+def filter_data(*args):
+    """Filtra os livros com base no texto digitado na busca"""
+    global current_page, filtered_books
+    search_term = entry_search.get().lower()
+    all_books = load_data()
+    
+    if search_term:
+        filtered_books = [b for b in all_books if search_term in b['title'].lower() or search_term in b['author'].lower()]
+    else:
+        filtered_books = all_books
+    
+    current_page = 0 # Reseta para a primeira página ao buscar
+    render_page()
+
 def add_book():
     author = entry_author.get()
     title = entry_title.get()
@@ -38,7 +53,8 @@ def add_book():
         save_data(books)
         messagebox.showinfo("Sucesso", "Livro cadastrado!")
         clear_entries()
-        render_page()
+        entry_search.delete(0, tk.END) # Limpa a busca para mostrar o novo livro
+        filter_data()
     else:
         messagebox.showwarning("Atenção", "Preencha todos os campos.")
 
@@ -49,7 +65,7 @@ def delete_book(book_to_delete):
                                                   b['title'] == book_to_delete['title'] and 
                                                   str(b['year']) == str(book_to_delete['year']))]
         save_data(updated_books)
-        render_page()
+        filter_data()
 
 def edit_book_setup(book):
     entry_author.delete(0, tk.END)
@@ -64,6 +80,7 @@ def edit_book_setup(book):
                                               b['title'] == book['title'] and 
                                               str(b['year']) == str(book['year']))]
     save_data(updated_books)
+    filter_data()
 
 # --- Funções de Interface ---
 
@@ -75,12 +92,11 @@ def render_page():
     for widget in scrollable_frame.winfo_children():
         widget.destroy()
 
-    books = load_data()
-    total_books = len(books) # Conta o total de itens no JSON
+    total_items = len(filtered_books)
     
     start = current_page * ITEMS_PER_PAGE
     end = start + ITEMS_PER_PAGE
-    page_items = books[start:end]
+    page_items = filtered_books[start:end]
 
     canvas_width = canvas.winfo_width()
     num_cols = max(1, canvas_width // CARD_MIN_WIDTH)
@@ -94,10 +110,9 @@ def render_page():
         col = i % num_cols
         create_card(book, row, col)
 
-    # Atualiza os textos de paginação e total
-    total_pages = (total_books - 1) // ITEMS_PER_PAGE + 1 if total_books else 1
+    total_pages = (total_items - 1) // ITEMS_PER_PAGE + 1 if total_items else 1
     label_page.config(text=f"Página {current_page + 1} de {total_pages}")
-    label_total.config(text=f"Total de Livros: {total_books}")
+    label_total.config(text=f"Livros encontrados: {total_items}")
 
 def create_card(book, row, col):
     card = tk.Frame(scrollable_frame, bg="white", highlightbackground="#e0e0e0", 
@@ -120,8 +135,7 @@ def create_card(book, row, col):
 
 def next_page():
     global current_page
-    books = load_data()
-    if (current_page + 1) * ITEMS_PER_PAGE < len(books):
+    if (current_page + 1) * ITEMS_PER_PAGE < len(filtered_books):
         current_page += 1
         render_page()
 
@@ -140,14 +154,15 @@ def clear_entries():
 
 root = tk.Tk()
 root.title("Livraria Digital")
-root.geometry("1500x750")
+root.geometry("1500x850")
 root.config(bg="#f4f7f6")
 
 header = tk.Frame(root, bg="#3f51b5", pady=15)
 header.pack(fill="x")
 tk.Label(header, text="Novo Livro", font=("Arial", 18, "bold"), fg="white", bg="#3f51b5").pack()
 
-form = tk.Frame(root, bg="#f4f7f6", pady=15)
+# Formulário de Cadastro
+form = tk.Frame(root, bg="#f4f7f6", pady=10)
 form.pack()
 
 tk.Label(form, text="Autor:", bg="#f4f7f6").grid(row=0, column=0, sticky="w")
@@ -164,6 +179,19 @@ entry_year.grid(row=2, column=1, pady=2, padx=10)
 
 tk.Button(form, text="Salvar Livro", bg="#4caf50", fg="white", font=("Arial", 10, "bold"),
           width=15, command=add_book).grid(row=3, column=0, columnspan=2, pady=10)
+
+# --- SEÇÃO: Barra de Busca ---
+search_frame = tk.Frame(root, bg="#f4f7f6", pady=20)
+search_frame.pack(fill="x")
+
+# Container interno para centralização real dos widgets
+search_container = tk.Frame(search_frame, bg="#f4f7f6")
+search_container.pack(expand=True)
+
+tk.Label(search_container, text="Buscar Livro ou Autor:", font=("Arial", 11, "bold"), bg="#f4f7f6", fg="#333").pack(side="left", padx=10)
+entry_search = tk.Entry(search_container, font=("Arial", 12), width=60, relief="flat", highlightbackground="#3f51b5", highlightthickness=1)
+entry_search.pack(side="left", ipady=3) # ipady para dar altura interna ao campo
+entry_search.bind("<KeyRelease>", filter_data)
 
 container = tk.Frame(root, bg="#f4f7f6")
 container.pack(fill="both", expand=True, padx=(10, 0))
@@ -185,8 +213,7 @@ scrollbar.pack(side="right", fill="y")
 footer = tk.Frame(root, bg="#f4f7f6", pady=10)
 footer.pack(fill="x")
 
-# Label de Total (Fica centralizada acima da navegação)
-label_total = tk.Label(footer, text="Total de Livros: 0", bg="#f4f7f6", font=("Arial", 12, "bold"), fg="#008E1F")
+label_total = tk.Label(footer, text="Livros encontrados: 0", bg="#f4f7f6", font=("Arial", 12, "bold"), fg="#008E1F")
 label_total.pack()
 
 nav_frame = tk.Frame(footer, bg="#f4f7f6")
@@ -197,5 +224,6 @@ label_page = tk.Label(nav_frame, text="Página 1", bg="#f6f4f7", font=("Arial", 
 label_page.pack(side="left", expand=True)
 tk.Button(nav_frame, text="Próxima ▶",  bg="#520078", fg="#ffffff", font=("Arial", 12, "bold"), command=next_page, width=12).pack(side="right", padx=50)
 
-render_page()
+# Inicializa a lista e renderiza
+filter_data() 
 root.mainloop()
